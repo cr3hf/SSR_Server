@@ -1,0 +1,198 @@
+wget -N --no-check-certificate https://softs.fun/Bash/ssrmu.sh && chmod +x ssrmu.sh && bash ssrmu.sh
+
+
+
+
+
+aptitude install -y vim git
+
+
+
+
+
+wget -N --no-check-certificate ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
+make VIMRUNTIMEDIR=/usr/share/vim/      make install
+
+
+
+
+
+
+
+
+
+------------------------------------------------ SWAP ---------------------------------------------------------
+
+dd if=/dev/zero of=/root/swapfile bs=1M count=1024		#增加1GB大小的交换分区
+mkswap /root/swapfile 																#建立swap的文件系统
+swapon /root/swapfile 																#启用swap文件
+4.使系统开机时自启用，在文件/etc/fstab中添加一行：
+/root/swapfile swap swap defaults 0 0
+
+
+新建和增加交换分区用到的命令为：mkswap、swapon等，而想关闭掉某个交换分区则用“swapoff /root/swapfile”这样的命令即可。
+
+可以用“cat /proc/swaps”、“swapon -s”、“free -m”等命令查看Swap分区的情况
+================================================================================================================
+
+
+
+------------------------------------------------ OPENVPN ---------------------------------------------------------
+
+wget -N --no-check-certificate http://swupdate.openvpn.org/as/openvpn-as-2.1.12-Debian7.amd_64.deb
+
+
+dpkg -i openvpn-as-2.1.12-Debian7.amd_64.deb
+
+================================================================================================================
+
+
+
+
+
+
+
+
+------------------------------------------------ L2TP ---------------------------------------------------------
+wget -N --no-check-certificate https://softs.fun/Bash/vpn/l2tp_debian.sh
+
+bash l2tp_debian.sh
+================================================================================================================
+
+
+------------------------------------------------ pptpd ---------------------------------------------------------
+wget -N --no-check-certificate https://softs.fun/Bash/vpn/pptpd_debian.sh
+
+bash pptpd_debian.sh
+================================================================================================================
+
+
+
+
+------------------------------------------------ FIX BUG ---------------------------------------------------------
+第一种方法：
+
+mv /var/lib/dpkg/info /var/lib/dpkg/info.bak //现将info文件夹更名
+
+mkdir /var/lib/dpkg/info //再新建一个新的info文件夹
+
+apt-get update
+// 不用解释了吧
+apt-get -f install xxx
+
+mv /var/lib/dpkg/info/* /var/lib/dpkg/info.bak
+//执行完上一步操作后会在新的info文件夹下生成一些文件，现将这些文件全部移到info.bak文件夹下
+rm -rf /var/lib/dpkg/info //把自己新建的info文件夹删掉
+
+mv /var/lib/dpkg/info.bak /var/lib/dpkg/info //把以前的info文件夹重新改回名字
+
+
+
+第二种方法；
+for i in /usr/share/fonts/X11/* /usr/share/fonts/truetype/*
+do touch "$i"
+done
+
+
+
+第三种方法：
+sudo apt-get update --fix-missing
+sudo apt-get autoremove && sudo apt-get clean && sudo apt-get install -f
+
+apt-get update --fix-missing
+apt-get autoremove && apt-get clean && apt-get install -f
+
+
+
+
+
+
+
+
+
+
+
+
+
+================================================================================================================
+
+------------------------------------------------ SS ---------------------------------------------------------
+wget --no-check-certificate -O shadowsocks-go.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-go.sh
+chmod +x shadowsocks-go.sh
+./shadowsocks-go.sh 2>&1 | tee shadowsocks-go.log
+
+安装完成后，脚本提示如下：
+
+Congratulations, Shadowsocks-go server install completed!
+Your Server IP        :your_server_ip
+Your Server Port      :your_server_port
+Your Password         :your_password
+Your Encryption Method:your_encryption_method
+
+Welcome to visit:https://teddysun.com/392.html
+Enjoy it!
+卸载方法：
+使用 root 用户登录，运行以下命令：
+./shadowsocks-go.sh uninstall
+其他事项：
+客户端配置的参考链接：https://teddysun.com/339.html
+
+安装完成后即已后台启动 Shadowsocks-go ，运行：
+
+/etc/init.d/shadowsocks status
+可以查看 Shadowsocks-go 进程是否已经启动。
+本脚本安装完成后，已将 shadowsocks-go 加入开机自启动。
+
+使用命令：
+启动：/etc/init.d/shadowsocks start
+停止：/etc/init.d/shadowsocks stop
+重启：/etc/init.d/shadowsocks restart
+状态：/etc/init.d/shadowsocks status
+
+多用户多端口配置文件示例：
+配置文件路径：/etc/shadowsocks/config.json
+
+{
+    "port_password":{
+         "8989":"password0",
+         "9001":"password1",
+         "9002":"password2",
+         "9003":"password3",
+         "9004":"password4"
+    },
+    "method":"your_encryption_method",
+    "timeout":600
+}
+
+================================================================================================================
+
+
+
+dpkg -l |grep vim
+
+apt-get install dpkg 
+
+
+
+
+
+wget -N --no-check-certificate https://raw.githubusercontent.com/ImAnyOne/SSR-Bash-Python/master/install.sh && bash install.sh
+
+
+
+
+------------------------------------------------ SSR ---------------------------------------------------------
+wget -N --no-check-certificate ftp://hyn.hotweb.win:65521/AiCard_01/Everyone/SSR/ssrcr.sh -O /usr/local/cr/ssr_server/ssrcr.sh
+bash /usr/local/cr/ssr_server/ssrcr.sh
+================================================================================================================
+
+ssr://NjMuMjIzLjEwNy4yMjg6MTM4OmF1dGhfYWVzMTI4X21kNTpyYzQtbWQ1Omh0dHBfc2ltcGxlOk1EQXdNREF3
+
+
+wget --no-check-certificate ftp://hyn.hotweb.win:65521/AiCard_01/Everyone/SSR/ssr.tar /usr/local/cr/ssr.tar
+
+apt-get -y install ntpdate
+
+apt-get -y install python python-dev python-pip python-m2crypto curl wget unzip gcc swig automake make perl cpio build-essential git ntpdate
+
+apt-get -y install curl wget unzip gcc automake make perl cpio build-essential git ntpdate
