@@ -184,6 +184,12 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/ImAnyOne/SSR-Ba
 ------------------------------------------------ SSR ---------------------------------------------------------
 wget -N --no-check-certificate ftp://hyn.hotweb.win:65521/AiCard_01/Everyone/SSR/ssrcr.sh -O /usr/local/cr/ssr_server/ssrcr.sh
 bash /usr/local/cr/ssr_server/ssrcr.sh
+
+wget --no-check-certificate https://raw.githubusercontent.com/cr3hf/SSR_Server/master/ssr.sh -O /usr/local/cr/ssr_server/ssr.sh
+bash /usr/local/cr/ssr_server/ssrcr.sh
+
+wget --no-check-certificate https://raw.githubusercontent.com/cr3hf/SSR_Server/master/ssr.sh-O/usr/local/ssr.sh  && bash/usr/local/ssr.sh
+
 ================================================================================================================
 
 ssr://NjMuMjIzLjEwNy4yMjg6MTM4OmF1dGhfYWVzMTI4X21kNTpyYzQtbWQ1Omh0dHBfc2ltcGxlOk1EQXdNREF3
